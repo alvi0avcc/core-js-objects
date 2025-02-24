@@ -56,11 +56,10 @@ const mergeObjects = (objects) =>
  *    removeProperties({name: 'John', age: 30, city: 'New York'}, ['age']) => {name: 'John', city: 'New York'}
  *
  */
-function removeProperties(obj, keys) {
-  return Object.fromEntries(
+const removeProperties = (obj, keys) =>
+  Object.fromEntries(
     Object.entries(obj).filter(([key]) => !keys.includes(key))
   );
-}
 
 /**
  * Compares two source objects. Returns true if the objects are equal and false otherwise.

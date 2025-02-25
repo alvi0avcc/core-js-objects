@@ -108,9 +108,7 @@ const isEmptyObject = (obj) => Object.keys(obj).length === 0;
  *    immutableObj.newProp = 'new';
  *    console.log(immutableObj) => {a: 1, b: 2}
  */
-function makeImmutable(/* obj */) {
-  throw new Error('Not implemented');
-}
+const makeImmutable = (obj) => Object.freeze(obj);
 
 /**
  * Returns a word from letters whose positions are provided as an object.

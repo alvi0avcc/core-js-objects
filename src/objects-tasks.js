@@ -17,7 +17,10 @@
  *    shallowCopy({a: 2, b: { a: [1, 2, 3]}}) => {a: 2, b: { a: [1, 2, 3]}}
  *    shallowCopy({}) => {}
  */
-const shallowCopy = (obj) => ({ ...obj });
+const shallowCopy = (obj) => {
+  const temp = {};
+  return Object.assign(temp, obj);
+};
 
 /**
  * Merges array of objects into a single object. If there are overlapping keys, the values

@@ -393,12 +393,16 @@ const cssSelectorBuilder = {
     return selector;
   },
 
-  attr(/* value */) {
-    throw new Error('Not implemented');
+  attr(value) {
+    const selector = Selector();
+    selector.addPart(`[${value}]`, 4);
+    return selector;
   },
 
-  pseudoClass(/* value */) {
-    throw new Error('Not implemented');
+  pseudoClass(value) {
+    const selector = Selector();
+    selector.addPart(`:${value}`, 5);
+    return selector;
   },
 
   pseudoElement(/* value */) {

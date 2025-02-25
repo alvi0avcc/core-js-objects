@@ -100,7 +100,8 @@ function compareObjects(obj1, obj2) {
  *    isEmptyObject({}) => true
  *    isEmptyObject({a: 1}) => false
  */
-const isEmptyObject = (obj) => Object.keys(obj).length === 0;
+// const isEmptyObject = (obj) => Object.keys(obj).length === 0;
+const isEmptyObject = (obj) => Object.entries(obj).length === 0;
 
 /**
  * Makes the source object immutable by preventing any changes to its properties.
@@ -118,7 +119,10 @@ const isEmptyObject = (obj) => Object.keys(obj).length === 0;
  *    immutableObj.newProp = 'new';
  *    console.log(immutableObj) => {a: 1, b: 2}
  */
-const makeImmutable = (obj) => Object.freeze(obj);
+// const makeImmutable = (obj) => Object.freeze(obj);
+function makeImmutable(obj) {
+  return Object.freeze(obj);
+}
 
 /**
  * Returns a word from letters whose positions are provided as an object.

@@ -350,17 +350,47 @@ function group(array, keySelector, valueSelector) {
  *  For more examples see unit tests.
  */
 
+const Selector = () => {
+  const parts = [];
+  let order = 0;
+
+  const addPart = (part, newOrder) => {
+    if (order > newOrder) {
+      throw new Error('Selector elements must be added in the correct order.');
+    }
+    parts.push(part);
+    order = newOrder;
+  };
+
+  const stringify = () => {
+    return parts.join('');
+  };
+
+  const selector = {
+    addPart,
+    stringify,
+  };
+
+  return selector;
+};
+
 const cssSelectorBuilder = {
-  element(/* value */) {
-    throw new Error('Not implemented');
+  element(value) {
+    const selector = Selector();
+    selector.addPart(value, 1);
+    return selector;
   },
 
-  id(/* value */) {
-    throw new Error('Not implemented');
+  id(value) {
+    const selector = Selector();
+    selector.addPart(`#${value}`, 2);
+    return selector;
   },
 
-  class(/* value */) {
-    throw new Error('Not implemented');
+  class(value) {
+    const selector = Selector();
+    selector.addPart(`.${value}`, 3);
+    return selector;
   },
 
   attr(/* value */) {

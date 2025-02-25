@@ -66,11 +66,17 @@ const mergeObjects = (objects) =>
  *    removeProperties({name: 'John', age: 30, city: 'New York'}, ['age']) => {name: 'John', city: 'New York'}
  *
  */
-const removeProperties = (obj, keys) =>
-  Object.fromEntries(
-    Object.entries(obj).filter(([key]) => !keys.includes(key))
-  );
-
+// const removeProperties = (obj, keys) =>
+//   Object.fromEntries(
+//     Object.entries(obj).filter(([key]) => !keys.includes(key))
+//   );
+function removeProperties(obj, keys) {
+  const link = obj;
+  keys.forEach((key) => {
+    delete link[key];
+  });
+  return link;
+}
 /**
  * Compares two source objects. Returns true if the objects are equal and false otherwise.
  * There are no nested objects.

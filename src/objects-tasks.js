@@ -412,34 +412,18 @@ class Selector {
   }
 }
 
-const cssSelectorBuilder = {
-  element(value) {
-    return new Selector().element(value);
-  },
+const cssSelectorBuilder = {};
 
-  id(value) {
-    return new Selector().id(value);
-  },
+['element', 'id', 'class', 'attr', 'pseudoClass', 'pseudoElement'].forEach(
+  (method) => {
+    cssSelectorBuilder[method] = (value) => {
+      return new Selector()[method](value);
+    };
+  }
+);
 
-  class(value) {
-    return new Selector().class(value);
-  },
-
-  attr(value) {
-    return new Selector().attr(value);
-  },
-
-  pseudoClass(value) {
-    return new Selector().pseudoClass(value);
-  },
-
-  pseudoElement(value) {
-    return new Selector().pseudoElement(value);
-  },
-
-  combine(selector1, combinator, selector2) {
-    return new Selector().combine(selector1, combinator, selector2);
-  },
+cssSelectorBuilder.combine = (selector1, combinator, selector2) => {
+  return new Selector().combine(selector1, combinator, selector2);
 };
 
 module.exports = {
